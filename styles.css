@@ -1,0 +1,122 @@
+/* page basics */
+body {
+  background-color: purple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+
+h1 {
+  color: blue;
+  background: rgba(195,182,255,0.25);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 12px 0;
+}
+
+/* image */
+img {
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255,182,193,0.8);
+  margin: 12px 0;
+}
+
+/* buttons container - flex keeps both inline initially */
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* common button style */
+.glow-btn {
+  padding: 12px 25px;
+  font-size: 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 0 10px #ffffff80, 0 0 20px #ffffff60;
+  transition: left 0.2s ease, top 0.2s ease;
+}
+
+/* colors */
+.yes { background-color: #4caf50; }
+.no  { background-color: #f44336; }
+
+/* NO button starts as normal inline element */
+#noBtn {
+  position: relative; /* important: starts beside YES */
+  z-index: 1000;      /* will be raised further when fixed */
+}
+
+/* float effect while stationary (uses transform so JS left/top won't conflict) */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%    { transform: translateY(-6px); }
+}
+/*#noBtn { animation: float 2s infinite ease-in-out; }*/
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(3px);
+  display: none;        /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.popup-content {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  width: 320px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.8);
+  animation: popIn 0.4s ease;
+}
+
+.popup-content img {
+  width: 220px;
+  margin-top: 15px;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Glow + pulse animation when text changes */
+@keyframes happyGlow {
+  0% {
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff, 0 0 20px #00c3ff;
+    transform: scale(1);
+  }
+  50% {
+    color: #8cf7ff;
+    text-shadow: 0 0 20px #00eaff, 0 0 40px #00c3ff;
+    transform: scale(1.1);
+  }
+  100% {
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff, 0 0 20px #00c3ff;
+    transform: scale(1);
+  }
+}
+
+.glow-on-happy {
+  animation: happyGlow 1.5s ease-in-out infinite;
+}
