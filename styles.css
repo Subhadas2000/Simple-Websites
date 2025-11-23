@@ -54,7 +54,7 @@ img {
 /* NO button starts as normal inline element */
 #noBtn {
   position: relative; /* important: starts beside YES */
-  z-index: 1000;      /* will be raised further when fixed */
+  z-index: auto;      /* will be raised further when fixed */
 }
 
 /* float effect while stationary (uses transform so JS left/top won't conflict) */
